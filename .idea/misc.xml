@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Mario/AndroidStudioProjects/SimulacionGobiernoPueblo/app/src/main/res/layout/fragment_main.xml" value="0.5" />
+        <entry key="..\:/Users/Mario/AndroidStudioProjects/SimulacionGobiernoPueblo/app/src/main/res/layout/activity_main.xml" value="0.17760416666666667" />
+        <entry key="..\:/Users/Mario/AndroidStudioProjects/SimulacionGobiernoPueblo/app/src/main/res/layout/fragment_animacion.xml" value="0.33697916666666666" />
+        <entry key="..\:/Users/Mario/AndroidStudioProjects/SimulacionGobiernoPueblo/app/src/main/res/layout/fragment_main.xml" value="0.33" />
+        <entry key="..\:/Users/Mario/AndroidStudioProjects/SimulacionGobiernoPueblo/app/src/main/res/layout/row_gobierno.xml" value="0.6791510611735331" />
+        <entry key="..\:/Users/Mario/AndroidStudioProjects/SimulacionGobiernoPueblo/app/src/main/res/layout/text_view.xml" value="0.17083333333333334" />
       </map>
     </option>
   </component>
