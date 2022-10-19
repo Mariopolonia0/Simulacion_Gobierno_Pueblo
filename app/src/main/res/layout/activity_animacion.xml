@@ -3,21 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/motion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layoutDescription="@xml/fragment_animacion_scene"
-    tools:context=".animacion.AnimacionFragment">
+    app:layoutDescription="@xml/activity_animacion_scene"
+    tools:context=".animacion.ActivityAnimacion">
 
-    <!-- TODO: Update blank fragment layout -->
     <ImageView
 
-        android:id="@+id/imageView"
+        android:id="@+id/red_star"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_agriculture" />
+        android:src="@drawable/ic_agriculture"
+        tools:layout_editor_absoluteX="181dp" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

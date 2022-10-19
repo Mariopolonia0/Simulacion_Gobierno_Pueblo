@@ -1,9 +1,10 @@
 package com.duramas.simulaciongobiernopueblo
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import androidx.navigation.findNavController
+import com.duramas.simulaciongobiernopueblo.animacion.ActivityAnimacion
 import com.duramas.simulaciongobiernopueblo.databinding.FragmentMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +18,8 @@ class MainActivity : AppCompatActivity() {
         val listaGobierno = ArrayList<Gobierno>()
 
         binding.floatingActionButtonIrAnimacion.setOnClickListener {
-            it.findNavController().navigate(R.id.motion)
+            val animacion = Intent(this, ActivityAnimacion::class.java)
+            startActivity(animacion)
         }
 
         binding.recyclerView.adapter = AdacterGobierno()
