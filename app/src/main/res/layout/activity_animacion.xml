@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/activity_animacion_scene"
+    app:motionDebug="SHOW_PATH"
     tools:context=".animacion.ActivityAnimacion">
 
     <ImageView
@@ -30,16 +31,6 @@
         android:src="@drawable/ic_agriculture_blue"
         tools:layout_editor_absoluteX="181dp"
         tools:layout_editor_absoluteY="46dp" />
-
-    <TextView
-        android:id="@+id/credits"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/titulo"
-        android:textColor="@color/blue_700"
-        android:textSize="22dp"
-        tools:layout_editor_absoluteX="184dp"
-        tools:layout_editor_absoluteY="16dp" />
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
