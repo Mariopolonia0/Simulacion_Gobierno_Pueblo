@@ -13,13 +13,17 @@
         android:theme="@style/Theme.SimulacionGobiernoPueblo"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityParqueo"
             android:label="Simulacion Parqueo"
-            android:name=".animacion.ActivityAnimacion"
             android:exported="false" />
         <activity
-            android:label="@string/app_name"
+            android:name=".animacion.ActivityAnimacion"
+            android:exported="false"
+            android:label="Animacion" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

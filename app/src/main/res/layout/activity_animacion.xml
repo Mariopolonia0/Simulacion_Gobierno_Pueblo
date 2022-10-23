@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/activity_animacion_scene"
-    app:motionDebug="SHOW_PATH"
     tools:context=".animacion.ActivityAnimacion">
 
     <ImageView
@@ -31,6 +30,16 @@
         android:src="@drawable/ic_agriculture_blue"
         tools:layout_editor_absoluteX="181dp"
         tools:layout_editor_absoluteY="46dp" />
+
+    <TextView
+        android:id="@+id/texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EL JEFE DANI"
+        android:textSize="30dp"
+        android:textColor="@color/blue"
+        tools:layout_editor_absoluteX="251dp"
+        tools:layout_editor_absoluteY="594dp" />
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

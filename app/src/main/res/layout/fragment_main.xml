@@ -56,7 +56,7 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="10dp"
         android:clickable="true"
         android:src="@drawable/ic_play"
         app:layout_constraintBottom_toBottomOf="@+id/floatingActionButton2"
@@ -67,9 +67,9 @@
         android:id="@+id/floatingActionButtonIrAnimacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:clickable="true"
-        android:src="@android:drawable/btn_star_big_on"
+        android:src="@drawable/ic_agriculture"
         app:layout_constraintBottom_toBottomOf="@+id/floatingActionButton2"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
         app:layout_constraintTop_toTopOf="@+id/floatingActionButton2"
@@ -90,7 +90,7 @@
         android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:src="@drawable/ic_stop"
@@ -143,5 +143,15 @@
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAgregarGobierno"
         app:layout_constraintStart_toEndOf="@+id/editTextNombreGobierno"
         app:layout_constraintTop_toTopOf="@+id/editTextNombreGobierno" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonSimulacionParqueo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonIrAnimacion"
+        app:layout_constraintTop_toTopOf="@+id/floatingActionButtonIrAnimacion"
+        app:srcCompat="@drawable/ic_local_shipping" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
