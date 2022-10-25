@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import com.duramas.simulaciongobiernopueblo.animacion.ActivityAnimacion
 import com.duramas.simulaciongobiernopueblo.databinding.FragmentMainBinding
+import com.duramas.simulaciongobiernopueblo.parqueo.ActivityParqueo
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity() {
         binding.floatingActionButtonIrAnimacion.setOnClickListener {
             val animacion = Intent(this, ActivityAnimacion::class.java)
             startActivity(animacion)
+        }
+
+        binding.floatingActionButtonSimulacionParqueo.setOnClickListener {
+            val parqueo = Intent(this, ActivityParqueo::class.java)
+            startActivity(parqueo)
         }
 
         binding.recyclerView.adapter = AdacterGobierno()

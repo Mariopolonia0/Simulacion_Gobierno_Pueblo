@@ -7,19 +7,24 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/ic_agriculture_blue"
+        android:label="Simulacion"
+        android:roundIcon="@drawable/ic_agriculture_blue"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimulacionGobiernoPueblo"
         tools:targetApi="31">
-        <activity
-            android:name=".ActivityParqueo"
-            android:label="Simulacion Parqueo"
-            android:exported="false" />
+
         <activity
             android:name=".animacion.ActivityAnimacion"
             android:exported="false"
             android:label="Animacion" />
+
+        <activity
+            android:name=".parqueo.ActivityParqueo"
+            android:theme="@style/Theme.SimulacionGobiernoPueblo"
+            android:exported="false"
+            android:label="Simulacion Parqueo" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
