@@ -1,6 +1,6 @@
 package com.duramas.simulaciongobiernopueblo.frio_frio
 
-import android.opengl.Visibility
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import com.duramas.simulaciongobiernopueblo.R
 import com.duramas.simulaciongobiernopueblo.databinding.ActivityFrioFrioBinding
-import com.duramas.simulaciongobiernopueblo.databinding.FragmentMainBinding
 import com.google.android.material.snackbar.Snackbar
 
 /*
@@ -89,30 +88,56 @@ class ActivityFrioFrio : AppCompatActivity() {
         // Handle item selection
         return when (item.itemId) {
             R.id.play -> {
-                Snackbar.make(this.binding.root,"Inicio la Simulacion",Snackbar.LENGTH_LONG)
-
+                Snackbar.make(this.binding.root, "Inicio la Simulacion", Snackbar.LENGTH_LONG)
                 calcularIngredienteVaso()
                 true
             }
             R.id.stop -> {
                 binding.progressBar.visibility = View.INVISIBLE
-                Snackbar.make(binding.root,"Termino la Simulacion",Snackbar.LENGTH_LONG)
+                Snackbar.make(binding.root, "Termino la Simulacion", Snackbar.LENGTH_LONG)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun calcularIngredienteVaso(){
-        binding.progressBar.visibility = View.VISIBLE
+    private fun calcularIngredienteVaso() {
+        //funcion para iniciar el 2do hilo y no bloquear la interfaz pricipal
+        Thread(Runnable() {
+            //aqui se hacede a al hilo que maneja la interfaz de usuario
+            this@ActivityFrioFrio.runOnUiThread({
+                binding.progressBar.visibility = View.VISIBLE
+            })
 
-        while (cubo > 0){
-            binding.porcientoCuboTextView.setText("Mario")
-            println(cubo.toString())
-            cubo --
-            //Thread.sleep(200)
-        }
-        binding.progressBar.visibility = View.INVISIBLE
+            while (cubo > 0) {
+                println(cubo.toString())
+                this@ActivityFrioFrio.runOnUiThread({
+                    binding.porcientoCuboTextView.setText(cubo.toString())
+                })
+
+            }
+
+            this@ActivityFrioFrio.runOnUiThread({
+                binding.progressBar.visibility = View.INVISIBLE
+            })
+
+
+        }).start()
+
+
+    }
+
+    fun rand(start: Int, end: Int): Int {
+        require(start <= end) { "Illegal Argument" }
+        return (start..end).random()
     }
 
 }
+
+//        binding.progressBar.visibility = View.VISIBLE
+//        while (cubo > 0) {
+//            println(cubo.toString())
+//            cubo--
+//        }
+//        Thread.sleep(3000)
+//        binding.progressBar.visibility = View.INVISIBLE
