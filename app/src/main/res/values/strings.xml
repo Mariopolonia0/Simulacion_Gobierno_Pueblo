@@ -1,6 +1,8 @@
+
+
 <resources>
     <string name="app_name">Simulacion Gobierno-Pueblo</string>
-    <string name="titulo">bueno</string>
+    <string name="persona_que_llegan">persona que llegan</string>
 
     <string-array name="ideologias">
         <item>CONSERVADOR</item>
@@ -19,3 +21,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
+
+<!--
+    -persona que llegan
+    -persona de la que llegan preguntan
+    -persona que compran
+    -frozen comprado
+    -propina de 10 peso dejada por el baso grande
+
+    imprimir fin de programa
+    -benefio
+    -costo totales
+    -ventas
+    -propinas
+
+
+-->

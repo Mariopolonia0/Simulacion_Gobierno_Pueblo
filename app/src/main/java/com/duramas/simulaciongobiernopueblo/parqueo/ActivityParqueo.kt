@@ -1,6 +1,7 @@
 package com.duramas.simulaciongobiernopueblo.parqueo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -28,12 +29,12 @@ class ActivityParqueo : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection
         return when (item.itemId) {
-            R.id.play -> {  //binding.motion1.getTransition(R.id.animacion_parqueo2)
+            R.id.play -> {
                 binding.motion1.transitionToEnd()
                 true
             }
             R.id.stop -> {
-                binding.motion1.transitionToStart()
+                binding.motion1.transitionToState(R.id.anima1)
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -13,18 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SimulacionGobiernoPueblo"
         tools:targetApi="31">
-
+        <activity
+            android:name=".frio_frio.ActivityFrioFrio"
+            android:exported="false" />
         <activity
             android:name=".animacion.ActivityAnimacion"
             android:exported="false"
             android:label="Animacion" />
-
         <activity
             android:name=".parqueo.ActivityParqueo"
-            android:theme="@style/Theme.SimulacionGobiernoPueblo"
             android:exported="false"
-            android:label="Simulacion Parqueo" />
-
+            android:label="Simulacion Parqueo"
+            android:theme="@style/Theme.SimulacionGobiernoPueblo" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
