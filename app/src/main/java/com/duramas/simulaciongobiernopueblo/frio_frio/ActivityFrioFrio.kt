@@ -3,12 +3,19 @@ package com.duramas.simulaciongobiernopueblo.frio_frio
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
+import android.widget.RelativeLayout
+import android.widget.Toast
 import com.duramas.simulaciongobiernopueblo.R
 import com.duramas.simulaciongobiernopueblo.databinding.ActivityFrioFrioBinding
+import com.duramas.simulaciongobiernopueblo.databinding.DialogoEditarCuboBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
 /*
@@ -64,11 +71,11 @@ class ActivityFrioFrio : AppCompatActivity() {
 
     private lateinit var binding: ActivityFrioFrioBinding
 
-    val vasoUno = Vaso(90.0,2.0, 2.0, 3)
-    val vasoDos = Vaso(50.0,4.2, 4.2, 6)
-    val vasoTres = Vaso(25.0,6.3, 6.3, 9)
+    val vasoUno = Vaso(90.0, 2.0, 2.0, 3)
+    val vasoDos = Vaso(50.0, 4.2, 4.2, 6)
+    val vasoTres = Vaso(25.0, 6.3, 6.3, 9)
 
-    var cubo = 2000
+    var cubo = 1000.0
 
     var proceso = Proceso()
 
@@ -76,6 +83,12 @@ class ActivityFrioFrio : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFrioFrioBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.valorCuboTextView.setText(cubo.toString())
+        binding.imageButtonEditarCubo.setOnClickListener({
+            showDialogEditarCubo()
+        })
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -102,15 +115,27 @@ class ActivityFrioFrio : AppCompatActivity() {
     }
 
     private fun calcularIngredienteVaso() {
+        binding.imageButtonEditarCubo.isEnabled = false
+
+        if (cubo <= 0) {
+            Toast.makeText(
+                applicationContext,
+                "Cubo es 0 o menor a 0. No se puede iniciar la simulación",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
         proceso = Proceso()
+
         //funcion para iniciar el 2do hilo y no bloquear la interfaz pricipal
         Thread(Runnable() {
             //aqui se hacede a al hilo que maneja la interfaz de usuario
             this@ActivityFrioFrio.runOnUiThread({
                 binding.progressBar.visibility = View.VISIBLE
             })
-            var contador = 10
-            while (contador > 0) {
+
+            while (cubo > 8) {
                 val personaLlegan = rand(1, 10)
                 val lleganPreguntan = rand(1, personaLlegan)
                 val personaCopran = rand(1, lleganPreguntan)
@@ -119,34 +144,83 @@ class ActivityFrioFrio : AppCompatActivity() {
                 proceso.personaPregunta += lleganPreguntan
                 proceso.personaCompran += personaCopran
 
-                for (i in 1..personaCopran){
-//                    when (rand(1, 3)) {
-//                        1 ->
-//                    }
+                for (i in 1..personaCopran) {
+                    when (rand(1, 3)) {
+                        1 -> {
+                            proceso.frozenCompradoUno++
+                            cubo -= 6.3
+                        }
+                        2 -> {
+                            proceso.frozenCompradoDos++
+                            cubo -= 4.2
+                        }
+                        3 -> {
+                            proceso.frozenCompradoTres++
+                            cubo -= 2
+                        }
+                    }
                 }
-
-
 
                 this@ActivityFrioFrio.runOnUiThread({
                     binding.valorPersonaLlegaTextView.setText(proceso.personaLLegan.toString())
                     binding.valorPersonaCopranTextView.setText(proceso.personaCompran.toString())
                     binding.valorPersonaPreguntanTextView.setText(proceso.personaPregunta.toString())
-
-
+                    binding.valorNumeroVendidoUnotextView.setText(proceso.frozenCompradoUno.toString())
+                    binding.valorNumeroVendidoDostextView.setText(proceso.frozenCompradoDos.toString())
+                    binding.valorNumeroVendidoTrestextView.setText(proceso.frozenCompradoTres.toString())
                     binding.valorCuboTextView.setText(cubo.toString())
                 })
 
-                contador--
-                Thread.sleep(2000)
-
+                Thread.sleep(1000)
             }
 
+            val costoTotal =
+                ((proceso.frozenCompradoUno * 90) + (proceso.frozenCompradoDos * 45) + (proceso.frozenCompradoTres * 20))
+            val ventas =
+                ((proceso.frozenCompradoUno * 90) + (proceso.frozenCompradoDos * 50) + (proceso.frozenCompradoTres * 25))
+            val beneficio = ventas - costoTotal
+            val propina = rand(0, proceso.frozenCompradoUno) * 10
+            val propinaMas = beneficio + propina
+
             this@ActivityFrioFrio.runOnUiThread({
+                binding.valorCuboTextView.setText("0")
                 binding.progressBar.visibility = View.INVISIBLE
+                binding.imageButtonEditarCubo.isEnabled = true
+                binding.textViewValorGastoTotal.setText(costoTotal.toString())
+                binding.textViewTotalVentas.setText(ventas.toString())
+                binding.textViewValorBeneficio.setText(beneficio.toString())
+                binding.textViewTotalPropina.setText(propina.toString())
+                binding.textViewValorGananciaMas.setText(propinaMas.toString())
+                binding.cardViewResultado.visibility = View.VISIBLE
             })
 
         }).start()
 
+
+    }
+
+    fun showDialogEditarCubo() {
+        val dialog = BottomSheetDialog(this)
+        dialog.setContentView(R.layout.dialogo_editar_cubo)
+        val botonCambiarValorCubo =
+            dialog.findViewById<FloatingActionButton>(R.id.floatingActionButtonAceptarEditarCubo)
+        val textEditarCubo = dialog.findViewById<EditText>(R.id.editTextEditarCubo)
+
+        botonCambiarValorCubo?.setOnClickListener({
+            if (textEditarCubo?.text?.length == 0) {
+                Toast.makeText(
+                    applicationContext,
+                    "Digite El numero de ml del cubo",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                cubo = textEditarCubo?.text.toString().toDouble()
+                dialog.dismiss()
+                binding.valorCuboTextView.setText(cubo.toString())
+            }
+        })
+
+        dialog.show()
 
     }
 
@@ -156,11 +230,3 @@ class ActivityFrioFrio : AppCompatActivity() {
     }
 
 }
-
-//        binding.progressBar.visibility = View.VISIBLE
-//        while (cubo > 0) {
-//            println(cubo.toString())
-//            cubo--
-//        }
-//        Thread.sleep(3000)
-//        binding.progressBar.visibility = View.INVISIBLE

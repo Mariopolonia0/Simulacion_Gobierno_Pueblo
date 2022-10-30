@@ -137,6 +137,6 @@
         android:clickable="true"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonSimulacionParqueo"
         app:layout_constraintTop_toTopOf="@+id/floatingActionButtonIrAnimacion"
-        app:srcCompat="@drawable/ic_room_service" />
+        app:srcCompat="@drawable/ic_icecream" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
