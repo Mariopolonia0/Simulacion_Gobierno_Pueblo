@@ -195,8 +195,6 @@ class ActivityFrioFrio : AppCompatActivity() {
             })
 
         }).start()
-
-
     }
 
     fun showDialogEditarCubo() {
