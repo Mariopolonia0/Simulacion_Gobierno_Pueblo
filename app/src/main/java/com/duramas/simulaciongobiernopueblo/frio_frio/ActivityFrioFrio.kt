@@ -64,13 +64,13 @@ class ActivityFrioFrio : AppCompatActivity() {
 
     private lateinit var binding: ActivityFrioFrioBinding
 
-    var listaVaso = arrayListOf<Vaso>(
-        Vaso(2.0, 2.0, 3),
-        Vaso(4.2, 4.2, 6),
-        Vaso(6.3, 6.3, 9),
-    )
+    val vasoUno = Vaso(90.0,2.0, 2.0, 3)
+    val vasoDos = Vaso(50.0,4.2, 4.2, 6)
+    val vasoTres = Vaso(25.0,6.3, 6.3, 9)
 
     var cubo = 2000
+
+    var proceso = Proceso()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,25 +102,48 @@ class ActivityFrioFrio : AppCompatActivity() {
     }
 
     private fun calcularIngredienteVaso() {
+        proceso = Proceso()
         //funcion para iniciar el 2do hilo y no bloquear la interfaz pricipal
         Thread(Runnable() {
             //aqui se hacede a al hilo que maneja la interfaz de usuario
             this@ActivityFrioFrio.runOnUiThread({
                 binding.progressBar.visibility = View.VISIBLE
             })
+            var contador = 10
+            while (contador > 0) {
+                val personaLlegan = rand(1, 10)
+                val lleganPreguntan = rand(1, personaLlegan)
+                val personaCopran = rand(1, lleganPreguntan)
 
-            while (cubo > 0) {
-                println(cubo.toString())
+                proceso.personaLLegan += personaLlegan
+                proceso.personaPregunta += lleganPreguntan
+                proceso.personaCompran += personaCopran
+
+                for (i in 1..personaCopran){
+//                    when (rand(1, 3)) {
+//                        1 ->
+//                    }
+                }
+
+
+
                 this@ActivityFrioFrio.runOnUiThread({
-                    binding.porcientoCuboTextView.setText(cubo.toString())
+                    binding.valorPersonaLlegaTextView.setText(proceso.personaLLegan.toString())
+                    binding.valorPersonaCopranTextView.setText(proceso.personaCompran.toString())
+                    binding.valorPersonaPreguntanTextView.setText(proceso.personaPregunta.toString())
+
+
+                    binding.valorCuboTextView.setText(cubo.toString())
                 })
+
+                contador--
+                Thread.sleep(2000)
 
             }
 
             this@ActivityFrioFrio.runOnUiThread({
                 binding.progressBar.visibility = View.INVISIBLE
             })
-
 
         }).start()
 

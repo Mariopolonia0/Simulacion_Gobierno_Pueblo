@@ -8,6 +8,7 @@ package com.duramas.simulaciongobiernopueblo.frio_frio
 //3 minutos
 
 data class Vaso(
+    val precio:Double = 0.0,
     val mlJugo: Double = 0.0,
     val ozAzuca: Double = 0.0,
     val cuvoHielo: Int = 0
