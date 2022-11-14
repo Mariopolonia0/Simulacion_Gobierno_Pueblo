@@ -8,10 +8,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.duramas.simulaciongobiernopueblo.animacion.ActivityAnimacion
 import com.duramas.simulaciongobiernopueblo.databinding.FragmentMainBinding
 import com.duramas.simulaciongobiernopueblo.frio_frio.ActivityFrioFrio
 import com.duramas.simulaciongobiernopueblo.parqueo.ActivityParqueo
+import com.duramas.simulaciongobiernopueblo.test_actitudes.TestActitudesActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,10 +25,14 @@ class MainActivity : AppCompatActivity() {
         binding = FragmentMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.floatingActionButtonIrAnimacion.setOnClickListener {
             val animacion = Intent(this, ActivityAnimacion::class.java)
             startActivity(animacion)
+        }
+
+        binding.floatingActionButtonTextActitudes.setOnClickListener {
+            val test = Intent(this,TestActitudesActivity::class.java)
+            startActivity(test)
         }
 
         binding.floatingActionButtonSimulacionParqueo.setOnClickListener {
@@ -41,20 +47,23 @@ class MainActivity : AppCompatActivity() {
 
         binding.recyclerView.adapter = AdacterGobierno()
         val adacter = binding.recyclerView.adapter as AdacterGobierno
-
         adacter.submitList(listaGobierno)
 
         val ideologias = resources.getStringArray(R.array.ideologias)
 
         val adapter = ArrayAdapter(this, R.layout.text_view, ideologias)
-
         binding.spinnerTipoGobierno.adapter = adapter
+
         binding.floatingActionButtonAgregarGobierno.setOnClickListener({
 
-            adacter.submitList(listaGobierno)
-            if (agregar())
-                Log.e("Error", "esta Vacio")
+            if (!agregar())
+                Toast.makeText(
+                    this,
+                    "El nombre del gobierto esta vacio",
+                    Toast.LENGTH_SHORT
+                ).show()
 
+            adacter.submitList(listaGobierno)
         })
     }
 

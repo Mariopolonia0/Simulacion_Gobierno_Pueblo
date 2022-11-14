@@ -384,6 +384,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
                 android:text="Total Propinas"
+                android:textColor="@color/blue"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 

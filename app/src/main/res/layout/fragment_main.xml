@@ -139,4 +139,14 @@
         app:layout_constraintTop_toTopOf="@+id/floatingActionButtonIrAnimacion"
         app:srcCompat="@drawable/ic_icecream" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonTextActitudes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonSimulacionFrioFrio"
+        app:layout_constraintTop_toTopOf="@+id/floatingActionButtonSimulacionFrioFrio"
+        app:srcCompat="@drawable/ic_text" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

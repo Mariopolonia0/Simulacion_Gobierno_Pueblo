@@ -1,6 +1,5 @@
 package com.duramas.simulaciongobiernopueblo.frio_frio
 
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -63,17 +62,11 @@ import com.google.android.material.snackbar.Snackbar
     -costo totales
     -ventas
     -propinas
-
  */
-
 
 class ActivityFrioFrio : AppCompatActivity() {
 
     private lateinit var binding: ActivityFrioFrioBinding
-
-    val vasoUno = Vaso(90.0, 2.0, 2.0, 3)
-    val vasoDos = Vaso(50.0, 4.2, 4.2, 6)
-    val vasoTres = Vaso(25.0, 6.3, 6.3, 9)
 
     var cubo = 1000.0
 

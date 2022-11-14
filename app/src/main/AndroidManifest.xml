@@ -14,9 +14,13 @@
         android:theme="@style/Theme.SimulacionGobiernoPueblo"
         tools:targetApi="31">
         <activity
-            android:name=".frio_frio.ActivityFrioFrio"
-            android:label="Simulacion Venta de frozen"
+            android:name=".test_actitudes.TestActitudesActivity"
+            android:label="Test De Carrera y Actitudes"
             android:exported="false" />
+        <activity
+            android:name=".frio_frio.ActivityFrioFrio"
+            android:exported="false"
+            android:label="Simulacion Venta de frozen" />
         <activity
             android:name=".animacion.ActivityAnimacion"
             android:exported="false"
