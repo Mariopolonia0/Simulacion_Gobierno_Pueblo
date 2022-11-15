@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">Simulacion Gobierno-Pueblo</string>
     <string name="persona_que_llegan">persona que llegan</string>
+    <string name="resultado">Resultado</string>
+    <string name="Ingenieria">Ingenieria</string>
+    <string name="Medicina">Medicina</string>
+    <string name="Turimos">Turimos</string>
+    <string name="Derecho">Derecho</string>
+    <string name="Educacion">Educacion</string>
+    <string name="Actitud">Actitud</string>
+    <string name="Personalidad">Personalidad</string>
 
     <string-array name="ideologias">
         <item>CONSERVADOR</item>
@@ -32,6 +40,7 @@
     -costo totales
     -ventas
     -propinas
+
 
 
 -->

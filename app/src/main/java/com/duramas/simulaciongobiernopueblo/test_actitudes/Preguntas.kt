@@ -14,7 +14,7 @@ data class Preguntas(
             "Matemáticas, Físicas y Química",
             "Historia, Taller de Lectura y Redacción e Inglés",
             "Biología, Química y Psicología",
-            "Economía, Estructura Socioeconómica de México y Contabilidad"
+            "Economía, Estructura Socioeconómica y Contabilidad"
         ),
         Preguntas(
             "Me resulta más fácil expresar mis pensamientos, sensaciones y emociones con palabras",
