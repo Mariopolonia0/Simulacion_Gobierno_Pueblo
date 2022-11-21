@@ -1,4 +1,4 @@
-package com.duramas.simulaciongobiernopueblo
+package com.duramas.simulaciongobiernopueblo.pueblo_gobierno
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -32,7 +32,7 @@ class AdacterGobierno(): RecyclerView.Adapter<AdacterGobierno.RowGobiernoViewHol
     inner class RowGobiernoViewHolder(private val binding: RowGobiernoBinding) :
         RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item:Gobierno){
+        fun bind(item: Gobierno){
             binding.textViewNombreGobirno.text = item.nombre
             binding.textViewIdeologiaGobierno.text = item.ideologia
             binding.textViewTipoGobierno.text = item.tipoGobierno

@@ -1,4 +1,4 @@
-package com.duramas.simulaciongobiernopueblo
+package com.duramas.simulaciongobiernopueblo.pueblo_gobierno
 
 //la ideologia puede ser CONSERVADOR, LIBERAL
 //el tipo gobierno puede ser PERMISIVA, COERCITIVA

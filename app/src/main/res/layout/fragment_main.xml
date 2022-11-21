@@ -8,145 +8,72 @@
     >
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Estado del pueblo"
-        android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Periodo De Gobierno"
-        android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
-    <TextView
-        android:id="@+id/textViewPeriodo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textViewPeriodo2"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textViewPeriodo2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="0"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonIrAnimacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:src="@drawable/ic_agriculture"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonAgregarGobierno"
-        android:layout_width="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:clickable="true"
-        android:src="@drawable/ic_add"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextNombreGobierno"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="SIMULACIONES"
+        android:textColor="@color/blue"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextNombreGobierno"
-        android:layout_height="wrap_content"/>
-
-    <EditText
-        android:id="@+id/editTextNombreGobierno"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="5"
-        android:hint="Gobiernos"
-        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+    <Button
+        android:id="@+id/buttonSaludCardio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:text="Salud Cardio vascular"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/blue"
+        app:icon="@drawable/ic_monitor_heart"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/buttonTextActitudes"
+        app:layout_constraintHorizontal_bias="0.405"
+        app:layout_constraintStart_toStartOf="@+id/buttonTextActitudes"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTextActitudes" />
+
+    <Button
+        android:id="@+id/buttonPuebloGobierno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Pueblo - Gobierno"
+        app:icon="@drawable/ic_reduce_capacity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextNombreGobierno"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:listitem="@layout/row_gobierno" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitulo" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <Button
+        android:id="@+id/buttonSimulacionParqueo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lista De Gobierno"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/editTextNombreGobierno"
-        app:layout_constraintTop_toBottomOf="@+id/floatingActionButtonAgregarGobierno" />
+        android:text="Parqueo"
+        app:icon="@drawable/ic_local_shipping"
+        app:layout_constraintEnd_toEndOf="@+id/buttonVentaFrio"
+        app:layout_constraintStart_toStartOf="@+id/buttonVentaFrio"
+        app:layout_constraintTop_toBottomOf="@+id/buttonVentaFrio" />
 
-    <Spinner
-        android:id="@+id/spinnerTipoGobierno"
-        android:layout_width="0dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextNombreGobierno"
-        app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonAgregarGobierno"
-        app:layout_constraintStart_toEndOf="@+id/editTextNombreGobierno"
-        app:layout_constraintTop_toTopOf="@+id/editTextNombreGobierno" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonSimulacionParqueo"
+    <Button
+        android:id="@+id/buttonTextActitudes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:clickable="true"
-        app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonIrAnimacion"
-        app:layout_constraintTop_toTopOf="@+id/floatingActionButtonIrAnimacion"
-        app:srcCompat="@drawable/ic_local_shipping" />
+        android:text="Test Carrera"
+        app:icon="@drawable/ic_text"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSimulacionParqueo"
+        app:layout_constraintStart_toStartOf="@+id/buttonSimulacionParqueo"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSimulacionParqueo" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonSimulacionFrioFrio"
+    <Button
+        android:id="@+id/buttonVentaFrio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:clickable="true"
-        app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonSimulacionParqueo"
-        app:layout_constraintTop_toTopOf="@+id/floatingActionButtonIrAnimacion"
-        app:srcCompat="@drawable/ic_icecream" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonTextActitudes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:clickable="true"
-        app:layout_constraintEnd_toStartOf="@+id/floatingActionButtonSimulacionFrioFrio"
-        app:layout_constraintTop_toTopOf="@+id/floatingActionButtonSimulacionFrioFrio"
-        app:srcCompat="@drawable/ic_text" />
+        android:text="Venta Frio Frio"
+        app:icon="@drawable/ic_icecream"
+        app:layout_constraintEnd_toEndOf="@+id/buttonPuebloGobierno"
+        app:layout_constraintStart_toStartOf="@+id/buttonPuebloGobierno"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPuebloGobierno" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

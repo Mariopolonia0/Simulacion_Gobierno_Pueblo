@@ -14,12 +14,23 @@
         android:theme="@style/Theme.SimulacionGobiernoPueblo"
         tools:targetApi="31">
         <activity
-            android:name=".test_actitudes.TestActitudesActivity"
-            android:label="Test De Carrera y Actitudes"
+            android:name=".pueblo_gobierno.ActivityPuebloGobierno"
+            android:label="Pueblo Gobierno"
+            android:theme="@style/Theme.SimulacionGobiernoPuebloConActionBar"
             android:exported="false" />
+        <activity
+            android:name=".salud_cardio_vascular.ActivitySaludCardioVascular"
+            android:exported="false"
+            android:theme="@style/Theme.SimulacionGobiernoPueblo"/>
+        <activity
+            android:name=".test_actitudes.TestActitudesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SimulacionGobiernoPueblo"
+            android:label="Test De Carrera y Actitudes" />
         <activity
             android:name=".frio_frio.ActivityFrioFrio"
             android:exported="false"
+            android:theme="@style/Theme.SimulacionGobiernoPuebloConActionBar"
             android:label="Simulacion Venta de frozen" />
         <activity
             android:name=".animacion.ActivityAnimacion"
@@ -29,14 +40,13 @@
             android:name=".parqueo.ActivityParqueo"
             android:exported="false"
             android:label="Simulacion Parqueo"
-            android:theme="@style/Theme.SimulacionGobiernoPueblo" />
+            android:theme="@style/Theme.SimulacionGobiernoPuebloConActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name">
+            android:theme="@style/Theme.SimulacionGobiernoPueblo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
