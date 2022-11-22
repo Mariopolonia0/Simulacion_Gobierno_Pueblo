@@ -12,6 +12,7 @@
     <string name="titulo">Indicador de estabilidad de salud cardiovascular</string>
     <string name="pulso_sanguineo">pulso sanguíneo</string>
     <string name="recomendacion">Recomendación</string>
+    <string name="mensajeGracias">Gracias por usar nuestro servicio</string>
 
     <string-array name="ideologias">
         <item>CONSERVADOR</item>

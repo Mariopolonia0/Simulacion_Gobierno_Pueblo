@@ -31,16 +31,32 @@ class ActivitySaludCardioVascular : AppCompatActivity() {
 
         } else {
             val puso = binding.editTextNumberPusoSanguineo.text.toString().toInt()
-            if (puso == 0) {
+            if (puso <= 30) {
                 binding.textViewResultado.setTextColor(Color.RED)
                 binding.textViewRecomendacion.setTextColor(Color.RED)
-                binding.textViewMostrarRecomendacion.setText("El paciente está muerto o revisé él puso sanguíneo otras ves")
+                binding.textViewMostrarRecomendacion.setText("El paciente está muriendo y necesita RCP rápidamente")
                 binding.cardViewResultado.visibility = View.VISIBLE
             }
-            if (puso <= 60){
+            if (puso >= 60 && puso <= 70) {
+                binding.textViewResultado.setTextColor(Color.BLUE)
+                binding.textViewRecomendacion.setTextColor(Color.BLUE)
+                binding.textViewMostrarRecomendacion.setText(
+                    "El paciente necesita ejercicio cardio vascular y si la presión sanguínea sigue bajando tiene que ir al médico"
+                )
+                binding.cardViewResultado.visibility = View.VISIBLE
+            }
+            if (puso < 60 || puso > 100 ) {
                 binding.textViewResultado.setTextColor(Color.RED)
                 binding.textViewRecomendacion.setTextColor(Color.RED)
-                binding.textViewMostrarRecomendacion.setText("Nivel de gravedad en tendencia peligrosa")
+                binding.textViewMostrarRecomendacion.setText(
+                    "El paciente necesita el RCP como nivel de gravedad, debe hacer una llamada o un mensaje a una persona o institución de alerta"
+                )
+                binding.cardViewResultado.visibility = View.VISIBLE
+            }
+            if (puso > 70 && puso <= 100) {
+                binding.textViewResultado.setTextColor(Color.BLUE)
+                binding.textViewRecomendacion.setTextColor(Color.BLUE)
+                binding.textViewMostrarRecomendacion.setText("La presión sanguínea está normal")
                 binding.cardViewResultado.visibility = View.VISIBLE
             }
         }
