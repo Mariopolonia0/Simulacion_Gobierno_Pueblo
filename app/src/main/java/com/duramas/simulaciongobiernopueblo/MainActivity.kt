@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.duramas.simulaciongobiernopueblo.databinding.FragmentMainBinding
+import com.duramas.simulaciongobiernopueblo.final_tarea.ActivityFinalTarea
 import com.duramas.simulaciongobiernopueblo.frio_frio.ActivityFrioFrio
 import com.duramas.simulaciongobiernopueblo.parqueo.ActivityParqueo
 import com.duramas.simulaciongobiernopueblo.pueblo_gobierno.ActivityPuebloGobierno
@@ -22,6 +23,11 @@ class MainActivity : AppCompatActivity() {
         binding.buttonTextActitudes.setOnClickListener {
             val test = Intent(this, TestActitudesActivity::class.java)
             startActivity(test)
+        }
+
+        binding.buttonTareaFinal.setOnClickListener {
+            val tareaFinal = Intent(this, ActivityFinalTarea::class.java)
+            startActivity(tareaFinal)
         }
 
         binding.buttonSimulacionParqueo.setOnClickListener {

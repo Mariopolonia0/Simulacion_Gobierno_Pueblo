@@ -94,13 +94,11 @@ class ActivityFrioFrio : AppCompatActivity() {
         // Handle item selection
         return when (item.itemId) {
             R.id.play -> {
-                Snackbar.make(this.binding.root, "Inicio la Simulacion", Snackbar.LENGTH_LONG)
                 calcularIngredienteVaso()
                 true
             }
             R.id.stop -> {
                 binding.progressBar.visibility = View.INVISIBLE
-                Snackbar.make(binding.root, "Termino la Simulacion", Snackbar.LENGTH_LONG)
                 true
             }
             else -> super.onOptionsItemSelected(item)
