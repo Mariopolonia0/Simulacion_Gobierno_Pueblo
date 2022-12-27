@@ -14,10 +14,17 @@
         android:theme="@style/Theme.SimulacionGobiernoPueblo"
         tools:targetApi="31">
         <activity
+            android:name=".ascensor.AscensorActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".final_tarea.ActivityFinalTarea"
+            android:exported="false"
             android:label="Tarea Final"
-            android:theme="@style/Theme.SimulacionGobiernoPuebloConActionBar"
-            android:exported="false" />
+            android:theme="@style/Theme.SimulacionGobiernoPuebloConActionBar" />
         <activity
             android:name=".pueblo_gobierno.ActivityPuebloGobierno"
             android:exported="false"

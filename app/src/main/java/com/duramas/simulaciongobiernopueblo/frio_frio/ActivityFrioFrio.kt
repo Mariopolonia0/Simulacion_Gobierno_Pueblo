@@ -2,20 +2,17 @@ package com.duramas.simulaciongobiernopueblo.frio_frio
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
-import android.widget.RelativeLayout
 import android.widget.Toast
 import com.duramas.simulaciongobiernopueblo.R
 import com.duramas.simulaciongobiernopueblo.databinding.ActivityFrioFrioBinding
-import com.duramas.simulaciongobiernopueblo.databinding.DialogoEditarCuboBinding
+import com.duramas.simulaciongobiernopueblo.utils.rand
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 
 /*
     descripcion de cubo
@@ -122,9 +119,9 @@ class ActivityFrioFrio : AppCompatActivity() {
         //funcion para iniciar el 2do hilo y no bloquear la interfaz pricipal
         Thread(Runnable() {
             //aqui se hacede a al hilo que maneja la interfaz de usuario
-            this@ActivityFrioFrio.runOnUiThread({
+            this@ActivityFrioFrio.runOnUiThread {
                 binding.progressBar.visibility = View.VISIBLE
-            })
+            }
 
             while (cubo > 8) {
                 val personaLlegan = rand(1, 10)
@@ -152,7 +149,7 @@ class ActivityFrioFrio : AppCompatActivity() {
                     }
                 }
 
-                this@ActivityFrioFrio.runOnUiThread({
+                this@ActivityFrioFrio.runOnUiThread {
                     binding.valorPersonaLlegaTextView.setText(proceso.personaLLegan.toString())
                     binding.valorPersonaCopranTextView.setText(proceso.personaCompran.toString())
                     binding.valorPersonaPreguntanTextView.setText(proceso.personaPregunta.toString())
@@ -160,7 +157,7 @@ class ActivityFrioFrio : AppCompatActivity() {
                     binding.valorNumeroVendidoDostextView.setText(proceso.frozenCompradoDos.toString())
                     binding.valorNumeroVendidoTrestextView.setText(proceso.frozenCompradoTres.toString())
                     binding.valorCuboTextView.setText(cubo.toString())
-                })
+                }
 
                 Thread.sleep(1000)
             }
@@ -173,7 +170,7 @@ class ActivityFrioFrio : AppCompatActivity() {
             val propina = rand(0, proceso.frozenCompradoUno) * 10
             val propinaMas = beneficio + propina
 
-            this@ActivityFrioFrio.runOnUiThread({
+            this@ActivityFrioFrio.runOnUiThread {
                 binding.valorCuboTextView.setText("0")
                 binding.progressBar.visibility = View.INVISIBLE
                 binding.imageButtonEditarCubo.isEnabled = true
@@ -183,7 +180,7 @@ class ActivityFrioFrio : AppCompatActivity() {
                 binding.textViewTotalPropina.setText(propina.toString())
                 binding.textViewValorGananciaMas.setText(propinaMas.toString())
                 binding.cardViewResultado.visibility = View.VISIBLE
-            })
+            }
 
         }).start()
     }
@@ -195,7 +192,7 @@ class ActivityFrioFrio : AppCompatActivity() {
             dialog.findViewById<FloatingActionButton>(R.id.floatingActionButtonAceptarEditarCubo)
         val textEditarCubo = dialog.findViewById<EditText>(R.id.editTextEditarCubo)
 
-        botonCambiarValorCubo?.setOnClickListener({
+        botonCambiarValorCubo?.setOnClickListener {
             if (textEditarCubo?.text?.length == 0) {
                 Toast.makeText(
                     applicationContext,
@@ -207,15 +204,8 @@ class ActivityFrioFrio : AppCompatActivity() {
                 dialog.dismiss()
                 binding.valorCuboTextView.setText(cubo.toString())
             }
-        })
+        }
 
         dialog.show()
-
     }
-
-    fun rand(start: Int, end: Int): Int {
-        require(start <= end) { "Illegal Argument" }
-        return (start..end).random()
-    }
-
 }

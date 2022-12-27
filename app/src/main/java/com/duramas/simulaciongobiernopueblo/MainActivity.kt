@@ -3,6 +3,8 @@ package com.duramas.simulaciongobiernopueblo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.duramas.simulaciongobiernopueblo.ascensor.AscensorActivity
+import com.duramas.simulaciongobiernopueblo.databinding.ActivityAscensorBinding
 import com.duramas.simulaciongobiernopueblo.databinding.FragmentMainBinding
 import com.duramas.simulaciongobiernopueblo.final_tarea.ActivityFinalTarea
 import com.duramas.simulaciongobiernopueblo.frio_frio.ActivityFrioFrio
@@ -28,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         binding.buttonTareaFinal.setOnClickListener {
             val tareaFinal = Intent(this, ActivityFinalTarea::class.java)
             startActivity(tareaFinal)
+        }
+
+        binding.buttonAscensor.setOnClickListener {
+            val ascensor = Intent(this,AscensorActivity::class.java)
+            startActivity(ascensor)
         }
 
         binding.buttonSimulacionParqueo.setOnClickListener {
