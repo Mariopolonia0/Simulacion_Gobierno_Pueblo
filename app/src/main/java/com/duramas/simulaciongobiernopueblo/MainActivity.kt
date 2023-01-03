@@ -3,6 +3,7 @@ package com.duramas.simulaciongobiernopueblo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import com.duramas.simulaciongobiernopueblo.ascensor.AscensorActivity
 import com.duramas.simulaciongobiernopueblo.databinding.ActivityAscensorBinding
 import com.duramas.simulaciongobiernopueblo.databinding.FragmentMainBinding

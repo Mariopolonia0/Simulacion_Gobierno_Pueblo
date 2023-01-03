@@ -5,41 +5,41 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.duramas.simulaciongobiernopueblo.R
 import com.duramas.simulaciongobiernopueblo.databinding.ActivityPuebloGobiernoBinding
+import com.duramas.simulaciongobiernopueblo.utils.rand
+import com.duramas.simulaciongobiernopueblo.utils.toast
 
 class ActivityPuebloGobierno : AppCompatActivity() {
     private lateinit var binding: ActivityPuebloGobiernoBinding
     val listaGobierno = ArrayList<Gobierno>()
 
+    var detener = false
+
+    var contador = 2022
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPuebloGobiernoBinding.inflate(layoutInflater)
 
-        setContentView(R.layout.activity_pueblo_gobierno)
+        setContentView(binding.root)
+
         binding.recyclerView.adapter = AdacterGobierno()
-        val adacter = binding.recyclerView.adapter as AdacterGobierno
-        adacter.submitList(listaGobierno)
+        val adacterRecycler = binding.recyclerView.adapter as AdacterGobierno
+        adacterRecycler.submitList(listaGobierno)
 
-        val ideologias = resources.getStringArray(R.array.ideologias)
+        val ideologias = arrayOf("CONSERVADOR", "LIBERAL")
+        val adapterSpinner = ArrayAdapter(binding.root.context, R.layout.text_view, ideologias)
+        binding.spinnerTipoGobierno.adapter = adapterSpinner
 
-        val adapter = ArrayAdapter(this, R.layout.text_view, ideologias)
-        binding.spinnerTipoGobierno.adapter = adapter
-
-        binding.floatingActionButtonAgregarGobierno.setOnClickListener({
-
+        binding.floatingActionButtonAgregarGobierno.setOnClickListener {
             if (!agregar())
-                Toast.makeText(
-                    this,
-                    "El nombre del gobierto esta vacio",
-                    Toast.LENGTH_SHORT
-                ).show()
+                toast("El nombre del gobierto esta vacio", this)
 
-            adacter.submitList(listaGobierno)
-        })
-
+            adacterRecycler.submitList(listaGobierno)
+        }
     }
 
     private fun agregar(): Boolean {
@@ -65,6 +65,31 @@ class ActivityPuebloGobierno : AppCompatActivity() {
         return true
     }
 
+    private fun iniciarSimulacion() {
+        if (listaGobierno.size <= 1) {
+            toast("La lista tiene que tener mas de un gobierno", this)
+            return
+        }
+        detener = false
+        Thread(Runnable() {
+            //aqui se hacede a al hilo que maneja la interfaz de usuario
+
+            while (detener == false){
+                this@ActivityPuebloGobierno.runOnUiThread {
+                    binding.textViewPeriodoGobieno.setText((contador++).toString())
+                }
+            }
+
+        }).start()
+
+        binding.progressBarGobiernoPueblo.visibility = View.VISIBLE
+    }
+
+    private fun terminarSimulacion() {
+        binding.progressBarGobiernoPueblo.visibility = View.INVISIBLE
+        detener = true
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
@@ -75,9 +100,11 @@ class ActivityPuebloGobierno : AppCompatActivity() {
         // Handle item selection
         return when (item.itemId) {
             R.id.play -> {
+                iniciarSimulacion()
                 true
             }
             R.id.stop -> {
+                terminarSimulacion()
                 true
             }
             else -> super.onOptionsItemSelected(item)

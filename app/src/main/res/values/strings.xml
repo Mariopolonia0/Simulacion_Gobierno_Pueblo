@@ -14,11 +14,6 @@
     <string name="recomendacion">Recomendación</string>
     <string name="mensajeGracias">Gracias por usar nuestro servicio</string>
 
-    <string-array name="ideologias">
-        <item>CONSERVADOR</item>
-        <item>LIBERAL</item>
-    </string-array>
-
     <string-array name="tipoPolitica">
         <item>PERMISIVA</item>
         <item>COERCITIVA</item>

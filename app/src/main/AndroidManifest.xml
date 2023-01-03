@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.duramas.simulaciongobiernopueblo">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -27,9 +26,13 @@
             android:theme="@style/Theme.SimulacionGobiernoPuebloConActionBar" />
         <activity
             android:name=".pueblo_gobierno.ActivityPuebloGobierno"
-            android:exported="false"
+            android:exported="true"
             android:label="Pueblo Gobierno"
-            android:theme="@style/Theme.SimulacionGobiernoPuebloConActionBar" />
+            android:theme="@style/Theme.SimulacionGobiernoPuebloConActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".salud_cardio_vascular.ActivitySaludCardioVascular"
             android:exported="false"
