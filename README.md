@@ -8,3 +8,7 @@
 ~~~
 https://codelabs.developers.google.com/codelabs/motion-layout#2
 ~~~
+
+~~~
+https://www.youtube.com/watch?v=SmLKDHRN57Q
+~~~
