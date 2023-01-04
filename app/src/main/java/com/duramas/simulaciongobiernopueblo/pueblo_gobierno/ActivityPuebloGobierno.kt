@@ -144,7 +144,7 @@ class ActivityPuebloGobierno : AppCompatActivity() {
         binding.progressBarGobiernoPueblo.visibility = View.INVISIBLE
 
         this@ActivityPuebloGobierno.runOnUiThread {
-            val textoCambios = "Se cambio ${progreso.cambioGobierno} el gobierno"
+            val textoCambios = "${progreso.cambioGobierno} cambios de gobierno"
             binding.textViewCambiosGobierno.setText(textoCambios)
 
             val textProtestas = "Se realizaron ${progreso.protestas} protestas"
