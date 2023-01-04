@@ -14,11 +14,8 @@ import com.duramas.simulaciongobiernopueblo.utils.toast
 
 class ActivityPuebloGobierno : AppCompatActivity() {
     private lateinit var binding: ActivityPuebloGobiernoBinding
-    val listaGobierno = ArrayList<Gobierno>()
-
-    var detener = false
-
-    var contador = 2022
+    private val listaGobierno = ArrayList<Gobierno>()
+    private var progreso: Progreso = Progreso()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,47 +44,115 @@ class ActivityPuebloGobierno : AppCompatActivity() {
         if (binding.editTextNombreGobierno.text.length == 0)
             return false
 
-        var tipogobierno = "PERMISIVA"
-
-        if (binding.spinnerTipoGobierno.selectedItemPosition == 0)
-            tipogobierno = "COERCITIVA"
-
         listaGobierno.add(
             Gobierno(
                 binding.editTextNombreGobierno.text.toString(),
                 binding.spinnerTipoGobierno.selectedItem.toString(),
-                tipogobierno
+                tipoGobierno()
             )
         )
 
         binding.editTextNombreGobierno.setText("")
-
         return true
     }
 
+
     private fun iniciarSimulacion() {
+
         if (listaGobierno.size <= 1) {
             toast("La lista tiene que tener mas de un gobierno", this)
             return
         }
-        detener = false
-        Thread(Runnable() {
-            //aqui se hacede a al hilo que maneja la interfaz de usuario
 
-            while (detener == false){
-                this@ActivityPuebloGobierno.runOnUiThread {
-                    binding.textViewPeriodoGobieno.setText((contador++).toString())
+        binding.progressBarGobiernoPueblo.visibility = View.VISIBLE
+        progreso.detenerse = false
+
+        Thread(Runnable() {
+
+            while (progreso.detenerse == false) {
+                cambiarPeriodo()
+                if (binding.ratingBar.rating < 3) {
+                    seleccionarGobierno()
                 }
+
+                for (contador in 1..8) {
+                    if (progreso.detenerse == false) {
+                        cambioContiendaCivil()
+                        cambioEstadoGobierno()
+                        Thread.sleep(2000)
+                    }
+                }
+                Thread.sleep(2000)
             }
 
         }).start()
+    }
 
-        binding.progressBarGobiernoPueblo.visibility = View.VISIBLE
+    private fun seleccionarGobierno() {
+        val seleccionado = rand(1, listaGobierno.size)
+        progreso.cambioGobierno++
+
+        this@ActivityPuebloGobierno.runOnUiThread {
+            binding.textViewGobiernoSeleccionado.setText(listaGobierno[seleccionado - 1].nombre)
+        }
+    }
+
+    private fun cambioEstadoGobierno() {
+        EstadoGobierno()
+        this@ActivityPuebloGobierno.runOnUiThread {
+            binding.textViewEstadoGobierno.setText(progreso.estadoGobierno)
+        }
+    }
+
+    private fun cambioContiendaCivil() {
+        progreso.contiendaCivil = rand(1, 5)
+
+        if (binding.ratingBar.rating < 2)
+            progreso.protestas++
+
+        this@ActivityPuebloGobierno.runOnUiThread {
+            binding.ratingBar.rating = progreso.contiendaCivil.toFloat()
+        }
+    }
+
+    private fun tipoGobierno(): String {
+        return if (binding.spinnerTipoGobierno.selectedItemPosition == 0)
+            "COERCITIVA"
+        else
+            "PERMISIVA"
+    }
+
+    private fun EstadoGobierno() {
+        if (progreso.contiendaCivil < 3)
+            progreso.estadoGobierno = "PERMISIVA"
+        else
+            progreso.estadoGobierno = "COERCITIVA"
+    }
+
+    private fun cambiarPeriodo() {
+        progreso.periodoInicio += 4
+        progreso.periodoFin += 4
+
+        val texto = "${progreso.periodoInicio} - ${progreso.periodoFin}"
+
+        this@ActivityPuebloGobierno.runOnUiThread {
+            binding.textViewPeriodoGobieno.setText(texto)
+        }
     }
 
     private fun terminarSimulacion() {
         binding.progressBarGobiernoPueblo.visibility = View.INVISIBLE
-        detener = true
+
+        this@ActivityPuebloGobierno.runOnUiThread {
+            val textoCambios = "Se cambio ${progreso.cambioGobierno} el gobierno"
+            binding.textViewCambiosGobierno.setText(textoCambios)
+
+            val textProtestas = "Se realizaron ${progreso.protestas} protestas"
+            binding.textViewProstestas.setText(textProtestas)
+        }
+
+        progreso = Progreso()
+        progreso.detenerse = true
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -110,5 +175,4 @@ class ActivityPuebloGobierno : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 }

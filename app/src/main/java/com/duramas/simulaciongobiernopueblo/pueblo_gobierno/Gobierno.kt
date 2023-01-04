@@ -5,5 +5,6 @@ package com.duramas.simulaciongobiernopueblo.pueblo_gobierno
 data class Gobierno(
     var nombre: String,
     var ideologia :String,
-    var tipoGobierno :String
+    var tipoGobierno :String,
+
 )
