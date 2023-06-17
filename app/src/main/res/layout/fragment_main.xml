@@ -91,7 +91,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ascensor"
-        app:icon="@drawable/ic_ascensonr"
         app:layout_constraintEnd_toEndOf="@+id/buttonSaludCardio"
         app:layout_constraintStart_toStartOf="@+id/buttonSaludCardio"
         app:layout_constraintTop_toBottomOf="@+id/buttonSaludCardio" />

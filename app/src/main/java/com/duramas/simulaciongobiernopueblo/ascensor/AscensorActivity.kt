@@ -2,9 +2,7 @@ package com.duramas.simulaciongobiernopueblo.ascensor
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.duramas.simulaciongobiernopueblo.R
 import com.duramas.simulaciongobiernopueblo.databinding.ActivityAscensorBinding
-import com.duramas.simulaciongobiernopueblo.databinding.ActivityFrioFrioBinding
 import com.duramas.simulaciongobiernopueblo.utils.rand
 
 /*
