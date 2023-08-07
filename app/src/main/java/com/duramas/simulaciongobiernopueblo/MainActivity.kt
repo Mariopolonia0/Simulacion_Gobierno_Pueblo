@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatDelegate
 import com.duramas.simulaciongobiernopueblo.ascensor.AscensorActivity
 import com.duramas.simulaciongobiernopueblo.databinding.ActivityAscensorBinding
 import com.duramas.simulaciongobiernopueblo.databinding.FragmentMainBinding
@@ -11,6 +12,7 @@ import com.duramas.simulaciongobiernopueblo.final_tarea.ActivityFinalTarea
 import com.duramas.simulaciongobiernopueblo.frio_frio.ActivityFrioFrio
 import com.duramas.simulaciongobiernopueblo.parqueo.ActivityParqueo
 import com.duramas.simulaciongobiernopueblo.pueblo_gobierno.ActivityPuebloGobierno
+import com.duramas.simulaciongobiernopueblo.raspberry.RaspberryActivity
 import com.duramas.simulaciongobiernopueblo.salud_cardio_vascular.ActivitySaludCardioVascular
 import com.duramas.simulaciongobiernopueblo.test_actitudes.TestActitudesActivity
 
@@ -21,6 +23,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentMainBinding.inflate(layoutInflater)
+
+        //deshabilita el modo oscuro
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
         setContentView(binding.root)
 
         binding.buttonTextActitudes.setOnClickListener {
@@ -57,5 +63,10 @@ class MainActivity : AppCompatActivity() {
             val pueblo = Intent(this, ActivityPuebloGobierno::class.java)
             startActivity(pueblo)
         })
+
+        binding.buttonRasberry.setOnClickListener {
+            val raspberry = Intent(this, RaspberryActivity::class.java)
+            startActivity(raspberry)
+        }
     }
 }

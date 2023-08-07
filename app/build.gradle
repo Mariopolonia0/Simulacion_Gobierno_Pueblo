@@ -35,6 +35,9 @@ android {
 
     }
     namespace 'com.duramas.simulaciongobiernopueblo'
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
