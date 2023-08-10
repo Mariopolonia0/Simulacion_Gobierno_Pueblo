@@ -9,43 +9,41 @@ import com.duramas.simulaciongobiernopueblo.databinding.ActivityRaspberryBinding
 class RaspberryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRaspberryBinding
+    val conect = conectBluetooth()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding = ActivityRaspberryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.buttonBlue.setOnClickListener({
-            val conect = conectBluetooth()
 
-            Toast.makeText(applicationContext,conect.conectarImpresora(),Toast.LENGTH_SHORT).show()
-
-            conect.abrirConexion()
             conect.impimir("1 ")
-
         })
 
         binding.buttonGreen.setOnClickListener({
-            val conect = conectBluetooth()
 
-            Toast.makeText(applicationContext,conect.conectarImpresora(),Toast.LENGTH_SHORT).show()
-
-            conect.abrirConexion()
             conect.impimir("2 ")
 
         })
 
         binding.buttonRed.setOnClickListener({
-            val conect = conectBluetooth()
-
-            Toast.makeText(applicationContext,conect.conectarImpresora(),Toast.LENGTH_SHORT).show()
-
-            conect.abrirConexion()
+            //Toast.makeText(applicationContext,conect.conectarImpresora(),Toast.LENGTH_SHORT).show()
             conect.impimir("3 ")
 
         })
 
+        binding.textViewState.text = conect.state
+
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        conect.close()
+    }
+
+
 
 }

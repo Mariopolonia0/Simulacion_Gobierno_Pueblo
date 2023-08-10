@@ -25,14 +25,21 @@ class conectBluetooth {
     private var readBuffer: ByteArray? = null
     private var readBufferPosition = 0
 
+    var state = ""
+
+    init {
+        conectarImpresora()
+        abrirConexion()
+    }
 
     //2C-P58-C
-     fun conectarImpresora(): String {
+    private fun conectarImpresora() {
 
         var impresoraEncotrada = false
 
         if (!mBluetoothAdapter.isEnabled) {
-            return "Encienda  el Bluttoth"
+            state = "Encienda  el Bluttoth"
+            return
         }
 
         try {
@@ -45,17 +52,18 @@ class conectBluetooth {
                 }
             }
         } catch (securityException: SecurityException) {
-            return "Encienda el Bluttoth"
+            state = "Encienda el Bluttoth"
+            return
         }
 
-        return if (impresoraEncotrada) {
+        state = if (impresoraEncotrada) {
             "Impresora encontrada"
         } else {
             "Conecte la impresora"
         }
     }
 
-     fun abrirConexion() {
+    private fun abrirConexion() {
         try {
             val uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb")
             mmSocket = mmDevice!!.createRfcommSocketToServiceRecord(uuid)
@@ -72,7 +80,7 @@ class conectBluetooth {
     }
 
 
-     fun beginListenForData() {
+    private fun beginListenForData() {
         try {
             //This is the ASCII code for a newline character
             val delimiter: Byte = 10
@@ -115,16 +123,16 @@ class conectBluetooth {
         }
     }
 
-     fun impimir(envio:String) {
+    fun impimir(envio: String) {
         try {
             mmOutputStream!!.write(envio.toByteArray())
-            close()
+
         } catch (exception: Exception) {
             Log.e("impimir", exception.toString())
         }
     }
 
-    private fun close() {
+    fun close() {
         mmOutputStream!!.close()
         mmInputStream!!.close()
         mmSocket!!.close()
@@ -133,5 +141,5 @@ class conectBluetooth {
 
 fun FormatearMonto(precio: Double): String {
     val decimalFormat = DecimalFormat("#,###.##")
-    return "$ ${decimalFormat.format(precio).replace('.',',')}"
+    return "$ ${decimalFormat.format(precio).replace('.', ',')}"
 }
