@@ -4,14 +4,12 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.util.Log
+import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.UUID
-import java.io.IOException
-import java.text.DecimalFormat
 
 class conectBluetooth {
-
 
     //android built in classes for bluetooth operations
     private val mBluetoothAdapter: BluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
@@ -28,42 +26,39 @@ class conectBluetooth {
     var state = ""
 
     init {
-        conectarImpresora()
-        abrirConexion()
+
+        if (conectarImpresora())
+            if(abrirConexion())
+                beginListenForData()
+
     }
 
-    //2C-P58-C
-    private fun conectarImpresora() {
-
-        var impresoraEncotrada = false
+    private fun conectarImpresora(): Boolean {
 
         if (!mBluetoothAdapter.isEnabled) {
-            state = "Encienda  el Bluttoth"
-            return
+            state = "Encienda el Bluttoth"
+            return false
         }
 
         try {
             val listaDipositivos = mBluetoothAdapter.bondedDevices
             for (item in listaDipositivos) {
+                state = "Conecte la Raspberry pi pico"
                 if (item.name.equals("HC-05")) {
                     mmDevice = item
-                    impresoraEncotrada = true
-                    break
+                    state = "Raspberry pi pico encontrada"
+                    return true
                 }
             }
         } catch (securityException: SecurityException) {
             state = "Encienda el Bluttoth"
-            return
+            return false
         }
-
-        state = if (impresoraEncotrada) {
-            "Impresora encontrada"
-        } else {
-            "Conecte la impresora"
-        }
+        return true
     }
 
-    private fun abrirConexion() {
+    private fun abrirConexion() :Boolean{
+        var _state = true
         try {
             val uuid = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb")
             mmSocket = mmDevice!!.createRfcommSocketToServiceRecord(uuid)
@@ -71,14 +66,23 @@ class conectBluetooth {
             mmOutputStream = mmSocket!!.getOutputStream()
             mmInputStream = mmSocket!!.getInputStream()
 
-            beginListenForData()
-        } catch (exception: Exception) {
-            Log.e("abrirConexion", exception.toString())
+
         } catch (securityException: SecurityException) {
-            Log.e("abrirConexion", securityException.toString())
+            _state = false
+            Log.e("abrirConexion securityException", securityException.toString())
+        } catch (exception: Exception) {
+            _state = false
+            Log.e("abrirConexion exception", exception.toString())
+        }
+
+        return if (_state) {
+            state = "Conectado"
+            true
+        } else {
+            state += "pero no esta conectada"
+            false
         }
     }
-
 
     private fun beginListenForData() {
         try {
@@ -137,9 +141,4 @@ class conectBluetooth {
         mmInputStream!!.close()
         mmSocket!!.close()
     }
-}
-
-fun FormatearMonto(precio: Double): String {
-    val decimalFormat = DecimalFormat("#,###.##")
-    return "$ ${decimalFormat.format(precio).replace('.', ',')}"
 }

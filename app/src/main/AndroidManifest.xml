@@ -8,9 +8,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_agriculture_blue"
+        android:icon="@drawable/solucition_polonia_icono_tranparente"
         android:label="Simulacion"
-        android:roundIcon="@drawable/ic_agriculture_blue"
+        android:roundIcon="@drawable/solucition_polonia_icono_tranparente"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimulacionGobiernoPueblo"
         tools:targetApi="31">
