@@ -65,8 +65,6 @@ class conectBluetooth {
             mmSocket!!.connect()
             mmOutputStream = mmSocket!!.getOutputStream()
             mmInputStream = mmSocket!!.getInputStream()
-
-
         } catch (securityException: SecurityException) {
             _state = false
             Log.e("abrirConexion securityException", securityException.toString())
