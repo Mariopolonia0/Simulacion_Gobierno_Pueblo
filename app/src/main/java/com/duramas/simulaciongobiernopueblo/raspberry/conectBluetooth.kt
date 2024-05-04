@@ -77,7 +77,7 @@ class conectBluetooth {
             state = "Conectado"
             true
         } else {
-            state += "pero no esta conectada"
+            state += " pero no esta conectada"
             false
         }
     }
